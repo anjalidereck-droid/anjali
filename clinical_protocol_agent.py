@@ -1,23 +1,49 @@
 """
 Clinical Trial Protocol Analyzer Agent
-Analyzes clinical trial protocols for discrepancies and answers questions
+
+This module provides functionality to analyze clinical trial protocols for
+discrepancies, missing sections, and common issues. It supports PDF documents
+and provides both programmatic and interactive interfaces for protocol analysis.
 """
 
 import pdfplumber
 import os
 from typing import List, Dict
-import re
 
 
 class ProtocolAnalyzer:
-    """Analyzes clinical trial protocols for common issues and discrepancies"""
+    """
+    A class to analyze clinical trial protocols for quality assurance.
+    
+    This analyzer reads clinical trial protocols in PDF format and checks for
+    common issues such as missing sections, undefined endpoints, and 
+    inconsistent enrollment criteria. It provides methods to search for 
+    specific information and extract sections from the protocol.
+    """
     
     def __init__(self):
+        """Initialize the ProtocolAnalyzer with empty protocol text."""
         self.protocol_text = ""
         self.protocol_metadata = {}
         
     def load_protocol(self, pdf_path: str) -> str:
-        """Load and extract text from PDF protocol"""
+        """
+        Load and extract text from a clinical trial protocol PDF file.
+        
+        This method opens a PDF file at the specified path and extracts all
+        text content from each page. The extracted text is stored internally
+        for use by other methods.
+        
+        Args:
+            pdf_path (str): The file path to the clinical trial protocol PDF.
+        
+        Returns:
+            str: The complete extracted text from the protocol.
+        
+        Raises:
+            FileNotFoundError: If the PDF file does not exist at the given path.
+            Exception: If there is an error reading or extracting text from the PDF.
+        """
         if not os.path.exists(pdf_path):
             raise FileNotFoundError(f"Protocol file not found: {pdf_path}")
         
@@ -27,22 +53,33 @@ class ProtocolAnalyzer:
                 for page in pdf.pages:
                     self.protocol_text += page.extract_text() + "\n"
             
-            print(f"✓ Protocol loaded successfully ({len(pdf.pages)} pages)")
+            page_count = len(pdf.pages)
+            print(f"Protocol loaded successfully ({page_count} pages)")
             return self.protocol_text
         except Exception as e:
             raise Exception(f"Error reading PDF: {str(e)}")
     
     def check_discrepancies(self) -> List[Dict]:
-        """Check for common discrepancies in clinical trial protocols"""
+        """
+        Check the protocol for common discrepancies and missing sections.
+        
+        This method performs a series of quality checks on the loaded protocol
+        to identify common issues. It looks for key sections and required
+        information that should be present in a well-structured clinical trial
+        protocol according to GCP (Good Clinical Practice) guidelines.
+        
+        Returns:
+            List[Dict]: A list of dictionaries containing discovered issues.
+                       Each dictionary has keys: 'severity', 'issue', 
+                       'description', and 'recommendation'.
+        """
         issues = []
         text = self.protocol_text.lower()
         
         # Check 1: Enrollment criteria consistency
+        # Verifies that both inclusion and exclusion criteria are present
         if "inclusion criteria" in text:
-            inclusion_idx = text.find("inclusion criteria")
-            exclusion_idx = text.find("exclusion criteria")
-            
-            if exclusion_idx == -1:
+            if "exclusion criteria" not in text:
                 issues.append({
                     "severity": "high",
                     "issue": "Missing Exclusion Criteria",
@@ -50,7 +87,8 @@ class ProtocolAnalyzer:
                     "recommendation": "Add a clear exclusion criteria section"
                 })
         
-        # Check 2: Primary and secondary endpoints
+        # Check 2: Primary and secondary endpoints definition
+        # Ensures that endpoints are clearly specified
         if "primary endpoint" not in text and "primary outcome" not in text:
             issues.append({
                 "severity": "high",
@@ -67,7 +105,8 @@ class ProtocolAnalyzer:
                 "recommendation": "Define secondary endpoints for exploratory analysis"
             })
         
-        # Check 3: Safety reporting
+        # Check 3: Safety and adverse event reporting
+        # Verifies that adverse event monitoring is documented
         if "adverse event" not in text and "safety" not in text:
             issues.append({
                 "severity": "high",
@@ -76,7 +115,8 @@ class ProtocolAnalyzer:
                 "recommendation": "Include clear AE grading and reporting procedures"
             })
         
-        # Check 4: Study population details
+        # Check 4: Study population specifications
+        # Ensures that the target sample size is specified
         if "sample size" not in text and "n=" not in text and "enrollment" not in text:
             issues.append({
                 "severity": "medium",
@@ -85,7 +125,8 @@ class ProtocolAnalyzer:
                 "recommendation": "Specify the target sample size with justification"
             })
         
-        # Check 5: Statistical analysis plan
+        # Check 5: Statistical analysis plan details
+        # Confirms that statistical methods are documented
         if "statistical analysis" not in text and "analysis plan" not in text:
             issues.append({
                 "severity": "medium",
@@ -94,7 +135,8 @@ class ProtocolAnalyzer:
                 "recommendation": "Include a comprehensive statistical analysis plan"
             })
         
-        # Check 6: Study duration
+        # Check 6: Study duration specification
+        # Verifies that follow-up periods are documented
         if "duration" not in text and "follow-up" not in text:
             issues.append({
                 "severity": "low",
@@ -106,42 +148,84 @@ class ProtocolAnalyzer:
         return issues
     
     def search_protocol(self, query: str) -> List[str]:
-        """Search for specific information in the protocol"""
+        """
+        Search for specific information within the protocol.
+        
+        This method performs a case-insensitive search through the protocol text
+        to find lines containing the specified query. Useful for locating specific
+        information such as inclusion criteria, endpoints, or other protocol details.
+        
+        Args:
+            query (str): The search term or phrase to find in the protocol.
+        
+        Returns:
+            List[str]: A list of lines from the protocol that contain the query.
+                      If no matches are found, returns a message indicating no results.
+        """
         results = []
         query_lower = query.lower()
         lines = self.protocol_text.split('\n')
         
+        # Iterate through each line and check if query matches
         for line in lines:
             if query_lower in line.lower() and len(line.strip()) > 0:
                 results.append(line.strip())
         
+        # Return results or a message if no matches found
         return results if results else ["No relevant information found for: " + query]
     
     def get_section(self, section_name: str) -> str:
-        """Extract a specific section from the protocol"""
+        """
+        Extract a specific section from the protocol.
+        
+        This method locates a section in the protocol by name and extracts
+        the text from that section up to the next recognized section heading.
+        Useful for isolating portions of the protocol like Methods, Results,
+        or Discussion.
+        
+        Args:
+            section_name (str): The name of the section to extract.
+        
+        Returns:
+            str: The text content of the specified section, or a message
+                 if the section is not found.
+        """
         text_lower = self.protocol_text.lower()
         section_lower = section_name.lower()
         
+        # Find the starting index of the requested section
         start_idx = text_lower.find(section_lower)
         if start_idx == -1:
             return f"Section '{section_name}' not found"
         
-        # Try to find the next section
-        next_sections = ["background", "methods", "results", "discussion", "references", 
-                        "appendix", "conclusion", "statistical", "analysis"]
+        # Define common section names to identify section boundaries
+        next_sections = ["background", "methods", "results", "discussion", 
+                        "references", "appendix", "conclusion", "statistical", "analysis"]
         
+        # Find the next section to determine where this section ends
         end_idx = len(self.protocol_text)
         for section in next_sections:
             idx = text_lower.find(section, start_idx + 1)
             if idx != -1 and idx < end_idx:
                 end_idx = idx
         
+        # Extract and return the section text
         return self.protocol_text[start_idx:end_idx].strip()
     
     def generate_summary(self) -> Dict:
-        """Generate a summary of the protocol"""
+        """
+        Generate a summary of the protocol structure.
+        
+        This method analyzes the loaded protocol and returns a dictionary
+        containing information about which key sections and components are
+        present in the protocol. This provides a quick overview of the
+        protocol's completeness.
+        
+        Returns:
+            Dict: A dictionary with boolean values indicating the presence
+                 of key protocol components.
+        """
         summary = {
-            "total_pages_approx": len(self.protocol_text.split('\n')) // 30,
             "has_study_design": "study design" in self.protocol_text.lower(),
             "has_inclusion_criteria": "inclusion" in self.protocol_text.lower(),
             "has_exclusion_criteria": "exclusion" in self.protocol_text.lower(),
@@ -152,29 +236,35 @@ class ProtocolAnalyzer:
 
 
 def main():
-    """Main function to demonstrate protocol analysis"""
+    """
+    Main function to run the protocol analyzer.
+    
+    This function demonstrates the protocol analyzer functionality. It loads
+    a protocol PDF, generates a summary, checks for discrepancies, and enters
+    an interactive mode where users can ask questions about the protocol.
+    """
     print("=" * 60)
     print("Clinical Trial Protocol Analyzer Agent")
     print("=" * 60)
     
     analyzer = ProtocolAnalyzer()
     
-    # Example usage
-    pdf_file = "protocol.pdf"  # User should provide their own protocol
+    # Define the protocol file to analyze
+    pdf_file = "protocol.pdf"
     
     try:
         if os.path.exists(pdf_file):
-            # Load protocol
+            # Load the protocol from PDF
             analyzer.load_protocol(pdf_file)
             
-            # Get summary
-            print("\n📋 Protocol Summary:")
+            # Generate and display protocol summary
+            print("\nProtocol Summary:")
             summary = analyzer.generate_summary()
             for key, value in summary.items():
-                print(f"  • {key}: {value}")
+                print(f"  {key}: {value}")
             
-            # Check for discrepancies
-            print("\n🔍 Quality Check - Potential Issues:")
+            # Perform quality checks and display issues
+            print("\nQuality Check - Potential Issues:")
             issues = analyzer.check_discrepancies()
             if issues:
                 for i, issue in enumerate(issues, 1):
@@ -182,11 +272,11 @@ def main():
                     print(f"     Issue: {issue['description']}")
                     print(f"     Recommendation: {issue['recommendation']}")
             else:
-                print("  ✓ No major issues detected")
+                print("  No major issues detected")
             
-            # Interactive mode
+            # Enter interactive question-answering mode
             print("\n" + "=" * 60)
-            print("💬 Ask questions about the protocol (type 'quit' to exit)")
+            print("Ask questions about the protocol (type 'quit' to exit)")
             print("=" * 60)
             
             while True:
@@ -194,13 +284,15 @@ def main():
                 if user_query.lower() in ['quit', 'exit', 'q']:
                     break
                 
+                # Search for relevant information in the protocol
                 results = analyzer.search_protocol(user_query)
-                print("\n📌 Relevant Information:")
-                for result in results[:3]:  # Show top 3 results
-                    print(f"  • {result}")
+                print("\nRelevant Information:")
+                for result in results[:3]:
+                    print(f"  {result}")
         
         else:
-            print(f"\n❌ File '{pdf_file}' not found")
+            # Handle case where protocol file is not found
+            print(f"\nFile '{pdf_file}' not found")
             print(f"Please place your clinical trial protocol PDF in the same directory")
             print(f"and name it '{pdf_file}'")
             print("\nExample usage:")
@@ -209,7 +301,7 @@ def main():
             print("  3. The agent will analyze the protocol and answer your questions")
     
     except Exception as e:
-        print(f"❌ Error: {str(e)}")
+        print(f"Error: {str(e)}")
 
 
 if __name__ == "__main__":

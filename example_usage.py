@@ -1,59 +1,77 @@
 """
 Example usage of the Clinical Trial Protocol Analyzer Agent
+
+This script demonstrates how to use the ProtocolAnalyzer class to analyze
+clinical trial protocols. It shows various features including loading protocols,
+checking for discrepancies, searching for information, and generating summaries.
 """
 
 from clinical_protocol_agent import ProtocolAnalyzer
 
 
 def example_usage():
-    """Demonstrates how to use the protocol analyzer"""
+    """
+    Demonstrate the functionality of the protocol analyzer.
+    
+    This function shows how to:
+    1. Initialize the analyzer
+    2. Load a protocol (or use sample text for demonstration)
+    3. Generate a summary
+    4. Check for quality issues
+    5. Search for specific information
+    """
     
     print("=" * 70)
     print("EXAMPLE: Clinical Trial Protocol Analyzer Agent")
     print("=" * 70)
     
-    # Initialize analyzer
+    # Step 1: Initialize the analyzer
     analyzer = ProtocolAnalyzer()
     
-    # Example 1: Load a protocol
-    print("\n📂 Step 1: Loading protocol...")
+    # Step 2: Load a protocol
+    print("\nStep 1: Loading protocol...")
     try:
         # Replace with your actual PDF path
         analyzer.load_protocol("your_protocol.pdf")
     except FileNotFoundError:
-        print("   ⚠️  No protocol.pdf found. Showing example functionality...")
+        print("   No protocol.pdf found. Using sample protocol for demonstration...")
         
-        # For demonstration, we'll use a sample protocol text
+        # For demonstration, use a sample protocol text
         analyzer.protocol_text = """
         Clinical Trial Protocol: A Phase III Study of Treatment X
         
         1. BACKGROUND
-        Study of new treatment for disease Y.
+        This is a study of a new treatment for disease Y.
         
         2. INCLUSION CRITERIA
-        - Age 18-75
-        - Diagnosed with disease Y
-        - Willing to participate
+        Patients must meet all of the following criteria:
+        - Age between 18 and 75 years
+        - Confirmed diagnosis of disease Y
+        - Willing to participate in the study
         
-        3. METHODS
-        Primary endpoint: Efficacy at week 12
-        Secondary endpoints: Safety and tolerability
+        3. STUDY METHODS
+        The primary endpoint will be measured at week 12.
+        Secondary endpoints include safety and tolerability measures.
         
         4. ADVERSE EVENTS
-        All adverse events will be recorded and graded.
+        All adverse events will be recorded and classified 
+        according to severity and relationship to treatment.
+        
+        5. STATISTICAL ANALYSIS
+        Statistical analysis will be performed using standard methods.
         """
-        print("   ✓ Sample protocol loaded for demonstration")
+        print("   Sample protocol loaded for demonstration")
     
-    # Example 2: Generate summary
-    print("\n📋 Step 2: Protocol Summary")
+    # Step 3: Generate protocol summary
+    print("\nStep 2: Protocol Summary")
     print("-" * 70)
     summary = analyzer.generate_summary()
     for key, value in summary.items():
-        status = "✓" if value else "✗"
-        print(f"   {status} {key}: {value}")
+        status = "PRESENT" if value else "MISSING"
+        print(f"   {key}: {status}")
     
-    # Example 3: Check for discrepancies
-    print("\n🔍 Step 3: Quality Check - Identified Issues")
+    # Step 4: Check for quality issues
+    print("\nStep 3: Quality Check - Identified Issues")
     print("-" * 70)
     issues = analyzer.check_discrepancies()
     
@@ -64,38 +82,43 @@ def example_usage():
             print(f"   Description: {issue['description']}")
             print(f"   Recommendation: {issue['recommendation']}")
     else:
-        print("   ✓ No major issues detected!")
+        print("   No major issues detected")
     
-    # Example 4: Search functionality
-    print("\n💬 Step 4: Search Example")
+    # Step 5: Demonstrate search functionality
+    print("\nStep 4: Search Example")
     print("-" * 70)
+    
+    # Define sample search queries
     search_queries = [
         "inclusion criteria",
         "primary endpoint",
         "adverse events"
     ]
     
+    # Perform searches and display results
     for query in search_queries:
         print(f"\n   Query: '{query}'")
         results = analyzer.search_protocol(query)
         for result in results[:2]:
-            print(f"   → {result[:80]}...")
+            truncated = result[:80] + "..." if len(result) > 80 else result
+            print(f"   Result: {truncated}")
     
+    # Step 6: Display usage instructions
     print("\n" + "=" * 70)
-    print("💡 HOW TO USE WITH YOUR OWN PROTOCOL:")
+    print("HOW TO USE WITH YOUR OWN PROTOCOL:")
     print("=" * 70)
     print("""
     1. Place your clinical trial protocol PDF in the same directory
-    2. Update the filename in the script (default: "protocol.pdf")
+    2. Update the filename in the script if needed (default: "protocol.pdf")
     3. Run the agent:
        
        python clinical_protocol_agent.py
     
     4. The agent will:
-       ✓ Load and analyze your protocol
-       ✓ Check for common discrepancies
-       ✓ Answer your questions about the protocol
-       ✓ Extract specific sections on demand
+       - Load and analyze your protocol
+       - Check for common discrepancies
+       - Answer your questions about the protocol
+       - Extract specific sections on demand
     
     5. Interactive mode features:
        - Type any question about the protocol
@@ -103,9 +126,15 @@ def example_usage():
        - Type 'quit' to exit
     """)
     
-    print("\n📚 API EXAMPLES:")
+    # Step 7: Display API examples
+    print("\nAPI EXAMPLES:")
     print("-" * 70)
     print("""
+    from clinical_protocol_agent import ProtocolAnalyzer
+    
+    # Create analyzer instance
+    analyzer = ProtocolAnalyzer()
+    
     # Load a protocol
     analyzer.load_protocol("my_protocol.pdf")
     
@@ -118,10 +147,9 @@ def example_usage():
     # Extract a section
     methods = analyzer.get_section("Methods")
     
-    # Get summary
+    # Get protocol summary
     summary = analyzer.generate_summary()
     """)
-
 
 if __name__ == "__main__":
     example_usage()
