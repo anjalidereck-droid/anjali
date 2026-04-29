@@ -44,7 +44,7 @@ Beyond research, I'm dedicated to **accessibility and inclusive education** – 
 
 ---
 
-## 🎯 What I Do
+## What I Do
 
 ** Research & Development**
 - Building AI/ML models for drug discovery and molecular optimization
@@ -98,14 +98,14 @@ An AI-powered agent that analyzes clinical trial protocols to identify discrepan
 ##  Certifications & Recognition
 
  **NIHR Research Practice in Health, Care and Community Settings**  
-✅ **NIHR Research Practice in Clinical Setting**  
-✅ **AI Consultant Micro-Internship** – Accenture UK & Ireland  
-✅ **Liverpool Advantage Award** – Culture Liverpool Accessibility Challenge  
-✅ **MSc Bioscience Bootcamp** – University of Liverpool  
+ **NIHR Research Practice in Clinical Setting**  
+ **AI Consultant Micro-Internship** – Accenture UK & Ireland  
+ **Liverpool Advantage Award** – Culture Liverpool Accessibility Challenge  
+ **MSc Bioscience Bootcamp** – University of Liverpool  
 
 ---
 
-## 💡 Interests & Focuses
+## Interests & Focuses
 
 -  **AI in Healthcare** – Transforming clinical practice through machine learning
 -  **Drug Discovery & Development** – From computational screening to clinical trials
