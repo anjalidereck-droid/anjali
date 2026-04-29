@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Trial Protocol Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Clinical Trial Protocol Analyzer</h1>
+            <p class="subtitle">Upload your protocol and get intelligent analysis</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <div class="upload-box" id="uploadBox">
+                    <input type="file" id="fileInput" accept=".pdf" hidden>
+                    <div class="upload-content">
+                        <h3>Upload Protocol</h3>
+                        <p>Click to select or drag and drop your PDF file</p>
+                        <button class="btn btn-primary" id="uploadBtn">Choose File</button>
+                    </div>
+                </div>
+                <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Processing protocol...</p>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <!-- Summary Tab -->
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="summary">Summary</button>
+                    <button class="tab-button" data-tab="issues">Issues</button>
+                    <button class="tab-button" data-tab="search">Search</button>
+                </div>
+
+                <!-- Summary Content -->
+                <div class="tab-content active" id="summary">
+                    <h2>Protocol Summary</h2>
+                    <div class="summary-grid" id="summaryGrid">
+                        <!-- Summary items will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Issues Content -->
+                <div class="tab-content" id="issues">
+                    <h2>Quality Issues Found</h2>
+                    <div class="issues-list" id="issuesList">
+                        <!-- Issues will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Search Content -->
+                <div class="tab-content" id="search">
+                    <h2>Search Protocol</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search for information in the protocol...">
+                        <button class="btn btn-secondary" id="searchBtn">Search</button>
+                    </div>
+                    <div class="search-results" id="searchResults">
+                        <!-- Search results will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Upload New Button -->
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" id="uploadNewBtn">Upload New Protocol</button>
+                </div>
+            </section>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage" style="display: none;"></div>
+        </main>
+
+        <footer class="footer">
+            <p>Clinical Trial Protocol Analyzer - Powered by AI</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
