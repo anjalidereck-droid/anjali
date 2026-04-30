@@ -1,4 +1,4 @@
-# Quick Start Guide 🚀
+# Quick Start Guide 
 
 ## Clinical Trial Protocol Analyzer Agent
 
@@ -6,8 +6,8 @@
 
 #### 1. Clone or Download the Project
 ```bash
-git clone https://github.com/anjalidereck-droid/anjali.git
-cd anjali
+git clone https://github.com/anjalidereck-droid/clinical-ai-agent
+cd clinical-ai-agent
 ```
 
 #### 2. Install Dependencies
@@ -57,30 +57,29 @@ summary = analyzer.generate_summary()
 
 ### What the Agent Can Do
 
-✅ **Analyze Protocol Structure**
+ **Analyze Protocol Structure**
 - Checks for presence of key sections
 - Identifies missing components
 
-✅ **Quality Assurance**
+ **Quality Assurance**
 - Detects common discrepancies
 - Flags potential issues
 - Provides recommendations
 
-✅ **Information Retrieval**
+ **Information Retrieval**
 - Search for specific information
 - Extract particular sections
 - Answer questions about the protocol
 
-✅ **Protocol Summary**
+ **Protocol Summary**
 - Quick overview of protocol components
 - Verification of completeness
 
 ### Example Output
 
 ```
-✓ Protocol loaded successfully (45 pages)
-
-📋 Protocol Summary:
+ Protocol loaded successfully (45 pages)
+ Protocol Summary:
   • total_pages_approx: 45
   • has_study_design: True
   • has_inclusion_criteria: True
@@ -88,7 +87,7 @@ summary = analyzer.generate_summary()
   • has_primary_endpoint: True
   • has_safety_plan: True
 
-🔍 Quality Check - Potential Issues:
+ Quality Check - Potential Issues:
   
   1. [HIGH] Missing Exclusion Criteria
      Issue: Exclusion criteria section not found
@@ -116,13 +115,13 @@ pip install pdfplumber
 
 ### Next Steps
 
-🚀 **Extend the Agent:**
+ **Extend the Agent:**
 - Add support for PDF annotations
 - Integrate with clinical trial databases
 - Add compliance checking for regulatory standards
 - Connect to LLMs for advanced analysis
 
-📊 **Use Cases:**
+ **Use Cases:**
 - Protocol review and QA
 - Regulatory compliance checking
 - Training materials for CRAs
@@ -136,6 +135,6 @@ pip install pdfplumber
 
 ---
 
-**Built by:** Anjali Dereck | MSc Drug Discovery with AI | University of Liverpool
+**Built by:** Anjali | MSc Drug Discovery with AI | University of Liverpool
 
 *Demonstrating: Clinical Research Expertise + AI/Python Implementation + Healthcare Data Processing*

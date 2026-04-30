@@ -113,5 +113,5 @@ Running (every time):
 
 That's it! Enjoy using CRA App!
 
-Created by: Anjali Dereck
+Created by: Anjali
 CRA App - Clinical Research Assistant

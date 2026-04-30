@@ -4,84 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRA App - Clinical Research Assistant</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1>CRA App</h1>
-            <p class="subtitle">Clinical Research Assistant - Upload your protocol and get intelligent analysis</p>
+            <div class="brand-badge">CRA</div>
+            <div>
+                <h1>Clinical Research Assistant</h1>
+                <p class="subtitle">Upload a protocol, review quality, and ask questions instantly.</p>
+            </div>
         </header>
 
         <main class="main-content">
-            <!-- Upload Section -->
-            <section class="upload-section">
-                <div class="upload-box" id="uploadBox">
-                    <input type="file" id="fileInput" accept=".pdf" hidden>
-                    <div class="upload-content">
-                        <h3>Upload Protocol</h3>
-                        <p>Click to select or drag and drop your PDF file</p>
-                        <button class="btn btn-primary" id="uploadBtn">Choose File</button>
+            <section class="hero-panel">
+                <div class="hero-text">
+                    <h2>Protocol review made simpler</h2>
+                    <p>
+                        Upload your clinical trial PDF, get an automated summary, detect missing sections,
+                        and ask questions based on the document.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <span class="stat-number">1</span>
+                            <span class="stat-label">Upload PDF</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">2</span>
+                            <span class="stat-label">Review Results</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Ask Questions</span>
+                        </div>
                     </div>
                 </div>
-                <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+            </section>
+
+            <section class="upload-section">
+                <div class="section-card">
+                    <div class="section-title-row">
+                        <h3>Upload Protocol</h3>
+                        <span class="pill">PDF only</span>
+                    </div>
+
+                    <div class="upload-box" id="uploadBox">
+                        <input type="file" id="fileInput" accept=".pdf" hidden>
+                        <div class="upload-content">
+                            <div class="upload-icon">📄</div>
+                            <h4 id="fileLabel">Click to select or drag and drop your PDF file</h4>
+                            <p>Your file will be analyzed securely in the browser workflow.</p>
+                            <div class="button-row">
+                                <button type="button" class="btn btn-primary" id="uploadBtn">Choose File</button>
+                                <button type="button" class="btn btn-secondary" id="submitBtn" disabled>Upload PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="loadingSpinner" class="loading-spinner" style="display:none;">
                     <div class="spinner"></div>
                     <p>Processing protocol...</p>
                 </div>
             </section>
 
-            <!-- Results Section -->
-            <section class="results-section" id="resultsSection" style="display: none;">
-                <!-- Summary Tab -->
+            <section class="results-section" id="resultsSection" style="display:none;">
+                <div id="statusBanner" class="status-banner"></div>
+
                 <div class="tabs">
-                    <button class="tab-button active" data-tab="summary">Summary</button>
-                    <button class="tab-button" data-tab="issues">Issues</button>
-                    <button class="tab-button" data-tab="search">Search</button>
+                    <button class="tab-button active" data-tab="summary" type="button">Summary</button>
+                    <button class="tab-button" data-tab="issues" type="button">Issues</button>
+                    <button class="tab-button" data-tab="search" type="button">Search</button>
                 </div>
 
-                <!-- Summary Content -->
                 <div class="tab-content active" id="summary">
-                    <h2>Protocol Summary</h2>
-                    <div class="summary-grid" id="summaryGrid">
-                        <!-- Summary items will be inserted here -->
+                    <div class="section-title-row">
+                        <h2>Protocol Summary</h2>
                     </div>
+                    <div class="summary-grid" id="summaryGrid"></div>
                 </div>
 
-                <!-- Issues Content -->
                 <div class="tab-content" id="issues">
-                    <h2>Quality Issues Found</h2>
-                    <div class="issues-list" id="issuesList">
-                        <!-- Issues will be inserted here -->
+                    <div class="section-title-row">
+                        <h2>Quality Issues Found</h2>
                     </div>
+                    <div class="issues-list" id="issuesList"></div>
                 </div>
 
-                <!-- Search Content -->
                 <div class="tab-content" id="search">
-                    <h2>Search Protocol</h2>
+                    <div class="section-title-row">
+                        <h2>Ask a Question</h2>
+                    </div>
                     <div class="search-box">
-                        <input type="text" id="searchInput" placeholder="Search for information in the protocol...">
-                        <button class="btn btn-secondary" id="searchBtn">Search</button>
+                        <input type="text" id="searchInput" placeholder="Ask something about the protocol...">
+                        <button class="btn btn-secondary" id="searchBtn" type="button">Ask</button>
                     </div>
-                    <div class="search-results" id="searchResults">
-                        <!-- Search results will be inserted here -->
-                    </div>
+                    <div class="search-results" id="searchResults"></div>
                 </div>
 
-                <!-- Upload New Button -->
                 <div class="action-buttons">
-                    <button class="btn btn-secondary" id="uploadNewBtn">Upload New Protocol</button>
+                    <button class="btn btn-secondary" id="uploadNewBtn" type="button">Upload New Protocol</button>
                 </div>
             </section>
 
-            <!-- Error Message -->
-            <div class="error-message" id="errorMessage" style="display: none;"></div>
+            <div class="error-message" id="errorMessage" style="display:none;"></div>
         </main>
 
         <footer class="footer">
-            <p>Clinical Trial Protocol Analyzer - Powered by AI</p>
+            <p>Clinical Trial Protocol Analyzer - Powered by AI - Designed by Anjali</p>
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script src="/static/script.js"></script>
 </body>
 </html>
