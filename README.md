@@ -1,151 +1,307 @@
-# 👋 Hi, I'm Anjali!
+# CRA App - Clinical Research Assistant
 
-**Clinical Research | Healthcare Data Analyst | AI in Healthcare & Drug Discovery**
-
-Welcome to my GitHub! I'm an MSc student in **Drug Discovery with Artificial Intelligence** at the University of Liverpool, passionate about transforming healthcare through data-driven solutions and computational approaches.
+A user-friendly web application for analyzing clinical trial protocols using AI. Upload your protocol, get intelligent analysis, identify issues, and find specific information instantly.
 
 ---
 
-## 🎓 About Me
+## Project Overview
 
-I'm combining computational chemistry with cutting-edge AI to accelerate drug discovery processes. My journey spans from **molecular docking simulations** to **machine learning models**, with a commitment to translating research into real-world clinical impact.
-
-Beyond research, I'm dedicated to **accessibility and inclusive education** – I work as a tutor supporting students with diverse learning needs, including those requiring additional support. This experience has strengthened my communication, adaptability, and passion for making science accessible to everyone.
-
-**Currently seeking opportunities** in the UK in:
-- 🧪 **Computational Drug Discovery**
-- 📊 **Clinical Research** (CRA/CTA roles)
-- 💻 **AI-Driven Healthcare Solutions**
-- 🏢 **CRO Operations | Medical Writing**
+CRA App is an intelligent assistant designed to help clinical researchers, CRAs (Clinical Research Associates), and protocol reviewers analyze clinical trial protocols efficiently. The application uses AI-powered analysis to identify common discrepancies, missing sections, and quality issues in protocols.
 
 ---
 
-## 🛠️ Technical Skills
+## Features
 
-### **Programming & Scripting**
-- **Python** – Data analysis, ML model development, automation
-- **MATLAB** – Computational modeling and simulations
+Upload Protocol
+- Drag and drop PDF file upload
+- Automatic text extraction from PDFs
+- Fast processing
 
-### **Drug Discovery & Computational Chemistry**
-- 🎯 **Molecular Docking**: AutoDock Vina, GOLD
-- 🔬 **QSAR Modeling** – Structure-activity relationship analysis
-- 🧬 **Cheminformatics** – Molecular property prediction and analysis
+Protocol Analysis
+- Quality checks and issue detection
+- Identify missing sections and endpoints
+- Severity-based reporting (High, Medium, Low)
 
-### **Machine Learning & AI**
-- 🤖 **Variational Autoencoders (VAEs)** – Generative modeling for molecular design
-- 🧬 **Genetic Algorithms (GA)** – Optimization and hyperparameter tuning
-- 📈 **Deep Learning** – Neural networks for drug discovery applications
-- 📊 **Data Analysis & Visualization**
+Interactive Search
+- Search for specific information in protocols
+- Find inclusion criteria, endpoints, adverse events
+- Extract specific sections
 
-### **Professional Development**
-- ✅ **AI Consulting & Prompt Engineering** (Accenture Micro-Internship)
-- 📋 **Clinical Research Best Practices** (NIHR Certified)
-- 💡 **Business Analysis & Strategic Thinking**
+Summary View
+- Protocol completeness overview
+- Check presence of key components
+- Visual status indicators
 
----
-
-## 🎯 What I Do
-
-**🔍 Research & Development**
-- Building AI/ML models for drug discovery and molecular optimization
-- Conducting QSAR studies for compound screening and prediction
-- Designing experiments with computational validation
-
-**📚 Education & Support**
-- Tutoring students (Maths, English, Sciences) with focus on accessibility
-- Supporting neurodivergent learners through tailored teaching approaches
-- Mentoring peers in bioscience and data analysis
-
-**🤝 Collaboration & Impact**
-- Contributing to healthcare innovation and clinical research
-- Participating in industry collaborations (Accenture UK)
-- Engaging with community initiatives (Claire House Children's Hospice volunteer)
+User-Friendly Interface
+- Tabbed interface for easy navigation
+- Responsive design works on desktop and mobile
+- No login or authentication required
+- Local privacy - data stays on your machine
 
 ---
 
-## 🔬 Featured Projects & Experience
+## Technology Stack
 
-### **Clinical Trial Protocol Analyzer Agent** 🤖📋
-An AI-powered agent that analyzes clinical trial protocols to identify discrepancies and answer research questions.
-- **Features:** PDF protocol analysis, quality checks, issue detection, interactive Q&A
-- **Tech:** Python, pdfplumber, LangChain, clinical research expertise
-- **Demonstrates:** AI implementation, healthcare data processing, protocol knowledge
-- 📂 [View Files](clinical_protocol_agent.py) | 📖 [Full Documentation](PROTOCOL_AGENT_README.md)
+Backend
+- FastAPI - Modern Python web framework
+- Uvicorn - ASGI server
+- pdfplumber - PDF text extraction
+- Python 3.8+
 
-### **MSc Drug Discovery with AI** – University of Liverpool
-- Computational molecular docking and virtual screening
-- QSAR modeling for drug efficacy prediction
-- Deep learning models (VAEs, GA) for molecular generation
-- Clinical research methodologies and best practices
-
-### **AI Consultant Micro-Internship** – Accenture & University of Liverpool
-- Real-world AI consulting project for LYVA Labs
-- Skills: Prompt Engineering, Business Analysis, LLM Applications, Strategic Thinking
-- Delivered SWOT analysis, root cause analysis, and AI-driven recommendations
-
-### **MSc Bioscience Bootcamp** – University of Liverpool
-- Hands-on training: PCR, Mass Spectrometry, Cell Culturing, GLP
-- Practical laboratory skills across molecular and cellular techniques
-- Networking with industry professionals and career guidance
-
-### **Tutoring & Inclusive Education** – OE Tuition Liverpool
-- Supporting students with diverse learning needs
-- Specialized work with autistic learners and those requiring additional support
-- 1-on-1 and small group instruction in Maths, English, and Sciences
+Frontend
+- HTML5 - Structure
+- CSS3 - Styling
+- JavaScript - Interactivity
+- No external UI frameworks required
 
 ---
 
-## 🏆 Certifications & Recognition
+## Installation
 
-✅ **NIHR Research Practice in Health, Care and Community Settings**  
-✅ **NIHR Research Practice in Clinical Setting**  
-✅ **AI Consultant Micro-Internship** – Accenture UK & Ireland  
-✅ **Liverpool Advantage Award** – Culture Liverpool Accessibility Challenge  
-✅ **MSc Bioscience Bootcamp** – University of Liverpool  
+Prerequisites
+- Python 3.8 or higher
+- Windows, Mac, or Linux
+- 100MB free disk space
 
----
+Step 1: Clone Repository
+```bash
+git clone https://github.com/anjalidereck-droid/anjali.git
+cd anjali
+```
 
-## 💡 Interests & Focuses
+Step 2: Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-- 🤖 **AI in Healthcare** – Transforming clinical practice through machine learning
-- 💊 **Drug Discovery & Development** – From computational screening to clinical trials
-- 📊 **Data-Driven Healthcare** – Analytics, biostatistics, and clinical informatics
-- ♿ **Accessibility & Inclusion** – Making science and opportunities accessible to all
-- 🧠 **Neurodiverse Support** – Understanding and fostering inclusive learning environments
-
----
-
-## 📈 GitHub Stats
-
-![GitHub streak](https://github-readme-streak-stats.herokuapp.com/?user=anjalidereck-droid&theme=dark)
-
-![Top Languages](https://github-readme-stats.herokuapp.com/api/top-langs/?username=anjalidereck-droid&layout=compact&theme=dark)
+This installs:
+- fastapi
+- uvicorn
+- pdfplumber
+- python-multipart
 
 ---
 
-## 🤝 Let's Connect!
+## Running the Application
 
-I'm always excited to discuss:
-- 🧪 Drug discovery, computational chemistry, and AI applications
-- 📚 Clinical research methodologies and career pathways
-- 🌱 Accessibility, inclusive practices, and supporting diverse learners
-- 🤖 Machine learning, deep learning, and emerging technologies
+Start the Server
+```bash
+python app.py
+```
 
-**Find me on:**
-- 🔗 **LinkedIn**: [Anjali Anjali](https://www.linkedin.com/in/anjali-a-b4ab541b9)
-- 📧 **Email**: anjalidereck@gmail.com
-- 🐙 **GitHub**: [@anjalidereck-droid](https://github.com/anjalidereck-droid)
+You should see:
+```
+Starting CRA App - Clinical Research Assistant
+Access the application at: http://localhost:8000
+```
 
----
-
-## 💭 Fun Fact
-
-I believe that **great science is built on three pillars: curiosity, collaboration, and compassion**. Whether I'm optimizing molecular structures with AI or supporting a student to believe in themselves, I'm driven by the same principle: **making complex things understandable and accessible to everyone**. 
-
-My journey from Bioscience → Drug Discovery with AI → Clinical Research reflects my passion for connecting computational innovation with real-world healthcare impact – and hopefully, changing lives along the way. 🚀
+Access the App
+Open your web browser and go to:
+```
+http://localhost:8000
+```
 
 ---
 
-**Thanks for visiting my profile!** Feel free to explore my repositories, check out my projects, and don't hesitate to reach out for collaboration or just to chat about AI, drug discovery, or inclusive education. Happy coding! 🎉
+## How to Use
 
-*"If you are going to change the world, you got to try really different things." – Frances Arnold*
+1. Upload Protocol
+   - Click the upload area or drag and drop your PDF
+   - Select a clinical trial protocol in PDF format
+
+2. View Analysis
+   - Protocol Summary tab shows which sections are present
+   - Issues tab displays detected quality problems
+   - Search tab allows searching for specific information
+
+3. Get Recommendations
+   - Each issue includes a recommended fix
+   - Severity levels indicate priority
+
+4. Search Protocol
+   - Type keywords in the search box
+   - Results show relevant text from the protocol
+
+---
+
+## Quality Checks Performed
+
+The application checks for:
+
+High Priority
+- Missing or unclear primary endpoints
+- Absent adverse event definitions
+- Missing enrollment criteria
+
+Medium Priority
+- Undefined secondary endpoints
+- Missing sample size specifications
+- Incomplete statistical analysis plans
+
+Low Priority
+- Unclear study duration
+- Missing follow-up period details
+
+---
+
+## File Structure
+
+```
+c:\Users\anjal\Desktop\git_stuff\
+    app.py                      (FastAPI backend server)
+    clinical_protocol_agent.py  (Analysis engine)
+    index.html                  (Web interface)
+    style.css                   (Styling)
+    script.js                   (Frontend interactions)
+    requirements.txt            (Python dependencies)
+    SETUP.md                    (Setup instructions)
+    PROTOCOL_AGENT_README.md    (Detailed documentation)
+```
+
+---
+
+## API Endpoints
+
+POST /api/upload
+- Upload and analyze a protocol PDF
+- Returns: Summary, Issues, Page count
+
+GET /api/summary
+- Get protocol summary
+
+GET /api/issues
+- Get detected issues
+
+POST /api/search
+- Search protocol content
+- Parameters: query (search term)
+
+GET /api/section
+- Extract specific section
+- Parameters: section_name
+
+---
+
+## Troubleshooting
+
+Port Already in Use
+- Error: Address already in use
+- Solution: Close other applications or change port in app.py
+
+Module Not Found
+- Error: ModuleNotFoundError
+- Solution: Run pip install -r requirements.txt
+
+File Upload Issues
+- Only PDF files are supported
+- Ensure file is valid and not corrupted
+
+No Results on Search
+- Try different keywords
+- Search is case-insensitive
+
+---
+
+## System Requirements
+
+Minimum
+- 2GB RAM
+- 100MB free disk space
+- Windows 10, Mac OS 10.14+, or Linux
+
+Recommended
+- 4GB RAM
+- 500MB free disk space
+- Modern web browser (Chrome, Firefox, Edge)
+
+---
+
+## Performance
+
+Typical Analysis Times
+- Protocol upload and parsing: 2-5 seconds
+- Quality checks: 1-2 seconds
+- Search: Less than 1 second
+- Total first analysis: 3-7 seconds
+
+File Size Support
+- Tested up to 200MB PDF files
+- Recommended: Under 50MB for best performance
+
+---
+
+## Future Enhancements
+
+Planned Features
+- User accounts and protocol history
+- Export analysis reports as PDF
+- Integration with ClinicalTrials.gov
+- Support for additional document formats
+- Advanced LLM integration for deeper analysis
+- Multi-language support
+- Team collaboration features
+
+---
+
+## Security and Privacy
+
+Data Privacy
+- All processing done locally
+- No data sent to external servers
+- Protocols only stored in memory during analysis
+- No data persistence between sessions
+
+Safe to Use
+- Open source code
+- No user tracking
+- No ads or third-party services
+
+---
+
+## Contributing
+
+Found an issue? Have suggestions?
+- Report bugs
+- Suggest improvements
+- Submit pull requests
+
+Contact: anjalidereck@gmail.com
+
+---
+
+## License
+
+Open source - Free to use and modify
+
+---
+
+## About the Developer
+
+Created by: Anjali Dereck
+MSc Drug Discovery with Artificial Intelligence
+University of Liverpool
+
+CRA App demonstrates expertise in:
+- Clinical research knowledge
+- Python programming
+- Web application development
+- AI and healthcare technology
+- User interface design
+
+---
+
+## Quick Start Guide
+
+Complete setup instructions available in [SETUP.md](SETUP.md)
+
+For detailed API documentation, see [WEB_APP_GUIDE.md](WEB_APP_GUIDE.md)
+
+For analysis engine details, see [PROTOCOL_AGENT_README.md](PROTOCOL_AGENT_README.md)
+
+---
+
+**Start analyzing protocols today with CRA App!**
+
+Visit: http://localhost:8000
+
+Built with passion for better clinical research.
