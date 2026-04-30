@@ -307,3 +307,5 @@ For analysis engine details, see [PROTOCOL_AGENT_README.md](PROTOCOL_AGENT_READM
 Visit: [http://localhost:8001/](http://localhost:8001/)
 
 Built with passion for better clinical research
+
+DISCLAMIER : This is the local development URL rather than a public website URL.
