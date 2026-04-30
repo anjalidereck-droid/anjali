@@ -84,21 +84,23 @@ This installs:
 
 ## Running the Application
 
-Start the Server
+Start the server:
+
 ```bash
 python app.py
 ```
 
 You should see:
-```
+
+```text
 Starting CRA App - Clinical Research Assistant
-Access the application at: [http://localhost:8000](http://127.0.0.1:8001/)
+Access the application at: http://127.0.0.1:8001/
 ```
 
-Access the App
 Open your web browser and go to:
-```
-[http://localhost:8000](http://127.0.0.1:8001/)
+
+```markdown
+[http://127.0.0.1:8001/](http://127.0.0.1:8001/)
 ```
 
 ---
